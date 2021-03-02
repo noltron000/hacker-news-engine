@@ -17,7 +17,7 @@ class Searchbar extends Component {
 				event.preventDefault()
 				// fetch some stuff from the API.
 				// its going to be a promise, so we'll await it later.
-				const promise = fetch(`http://hn.algolia.com/api/v1/search?query=${this.state.query}`)
+				const promise = fetch(`https://hn.algolia.com/api/v1/search?query=${this.state.query}`)
 				const response = await promise
 				const data = await response.json()
 				console.log(data)
