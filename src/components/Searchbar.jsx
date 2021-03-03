@@ -22,12 +22,12 @@ class Searchbar extends Component {
 				// don't allow the site to reload after submitting.
 				event.preventDefault()
 
-				// add current query to redux history.
-				const queries = [...this.props.search.queries, this.state.query]
-
 				// re-visit promises and await completion.
 				const response = await promise
 				const results = await response.json()
+
+				// add current query to redux history.
+				const queries = [...this.props.search.queries, this.state.query]
 
 				// tell redux that we have new search data.
 				this.props.activateSearch({
