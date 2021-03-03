@@ -1,0 +1,8 @@
+pre code {
+	display: block;
+	overflow-x: scroll;
+	overflow-y: scroll;
+	max-height: 90vh;
+	border: 3px double black;
+	resize: vertical;
+}
