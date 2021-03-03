@@ -35,6 +35,7 @@ const search = (state = {'queries': [ ]}, action) => {
 // bundle together all reducers.
 const reducers = combineReducers({search})
 
+
 /* STORE */
 // we're required to use a verbose f(x) behind the scenes.
 // verbose meaning, we use the 'function' keyword.
@@ -45,6 +46,7 @@ function configureStore(initialState = {}) {
 
 // bundle up together the store
 const store = configureStore()
+
 
 /* EXPORT */
 export {

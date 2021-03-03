@@ -10,13 +10,14 @@ class Searchbar extends Component {
 		super()
 		this.state = {
 			'query': '',
-			'results': ''
+			'results': '',
 		}
 	}
+
 	render () { return (<>
 		<form
 			onSubmit={async (event) => {
-				// don't allow the site to reload.
+				// don't allow the site to reload after submitting.
 				event.preventDefault()
 
 				// add current query to redux history.
@@ -36,6 +37,8 @@ class Searchbar extends Component {
 				})
 			}}
 		>
+
+			{/* Here is the searchbar's HTML. */}
 			<div>
 				<label>
 					Search Hacker News
@@ -60,7 +63,6 @@ class Searchbar extends Component {
 					type="submit"
 					value="Search"
 				/>
-
 			</div>
 		</form>
 
@@ -72,18 +74,27 @@ class Searchbar extends Component {
 	</>)}
 }
 
-/* EXTEND INTO REDUX CONTAINER */
-const mapStateToProps = (state) => ({
-  search: state.search,
-})
+/* EXTEND OBJECT INTO REDUX CONTAINER */
+const mapStateToProps = (state) => {
+	// create props from state
+	const props = {
+  	search: state.search,
+	}
+
+	// return props
+	return props
+}
 
 const mapDispatchToProps = {
+	// "dispatch" bundled functions to incoming class context.
   activateSearch,
 }
 
 const SearchbarContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Searchbar)
 
+// new redux container replaces the base class.
+// it has all the base class functionality and more.
 export default SearchbarContainer
