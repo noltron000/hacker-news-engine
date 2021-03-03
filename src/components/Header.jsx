@@ -1,5 +1,5 @@
 // import styles & other objects
-import logo from '../logo.svg'
+import logo from '../react-logo.svg'
 import './Header.css'
 
 function Header() {
