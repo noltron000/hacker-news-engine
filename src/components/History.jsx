@@ -7,7 +7,7 @@ import {Component} from 'react'
 class History extends Component {
 	render () {return (
 		<section>
-			<p>Search History:</p>
+			<h2>Search History</h2>
 			<ul>
 				{this.props.search.queries.map((query) => (
 					<li key={query}>{query}</li>
