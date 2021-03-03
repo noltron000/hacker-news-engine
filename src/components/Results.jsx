@@ -22,7 +22,7 @@ class Results extends Component {
 			</h2>
 			<p>
 				{this.props.search.results.exhaustiveNbHits ? 'Exactly ' : 'More than '}
-				{this.props.search.results.nbHits}
+				{this.props.search.results.nbHits ?? NaN}
 				{' results in '}
 				{this.props.search.results.processingTimeMS / 1000}
 				{' seconds.'}
