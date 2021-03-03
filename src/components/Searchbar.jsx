@@ -1,8 +1,9 @@
 // import styles & other objects
 import {connect} from 'react-redux'
 import {activateSearch} from '../redux.js'
-import {Component} from 'react'
 import './Searchbar.css'
+// import components
+import {Component} from 'react'
 
 /* CREATE BASE CLASS */
 class Searchbar extends Component {
@@ -66,12 +67,6 @@ class Searchbar extends Component {
 				/>
 			</div>
 		</form>
-
-		<p>Search History:</p>
-		<pre><code>{JSON.stringify(this.props.search.queries)}</code></pre>
-
-		<p>JSON Results:</p>
-		<pre><code>{JSON.stringify(this.props.search.results, null, "\t")}</code></pre>
 	</>)}
 }
 
