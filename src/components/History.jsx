@@ -6,10 +6,14 @@ import {Component} from 'react'
 /* CREATE BASE CLASS */
 class History extends Component {
 	render () {return (
-		<>
+		<section>
 			<p>Search History:</p>
-			<pre><code>{JSON.stringify(this.props.search.queries)}</code></pre>
-		</>
+			<ul>
+				{this.props.search.queries.map((query) => (
+					<li key={query}>{query}</li>
+				))}
+			</ul>
+		</section>
 	)}
 }
 
