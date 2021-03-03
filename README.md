@@ -1,6 +1,12 @@
 # Hacker News Search Engine
 > Project initialized on March 1st, 2021.
 
+## Commentary
+### References
+These following sources helped me out:
+- https://blog.tylerbuchea.com/super-simple-react-redux-application-example/
+- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+
 ---
 
 ## RTS Labs Take-Home Project
