@@ -2,6 +2,7 @@
 import {connect} from 'react-redux'
 // import react components
 import {Component} from 'react'
+import Result from './Result'
 
 /* CREATE BASE CLASS */
 class Results extends Component {
@@ -31,7 +32,7 @@ class Results extends Component {
 			<pre><code>{JSON.stringify(this.props.search.results, null, '\t')}</code></pre>
 
 			{(this.props.search.results.hits ?? [ ]).map((hit) => (
-				<pre><code>{JSON.stringify(hit, null, '\t')}</code></pre>
+				<Result props={hit}/>
 			))}
 
 			<p>
