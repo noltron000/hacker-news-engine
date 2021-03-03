@@ -67,11 +67,11 @@ class Searchbar extends Component {
 			</div>
 		</form>
 
-		<p>JSON Results:</p>
-		<pre><code>{JSON.stringify(this.props.search.results, null, "\t")}</code></pre>
-
 		<p>Search History:</p>
 		<pre><code>{JSON.stringify(this.props.search.queries)}</code></pre>
+
+		<p>JSON Results:</p>
+		<pre><code>{JSON.stringify(this.props.search.results, null, "\t")}</code></pre>
 	</>)}
 }
 
