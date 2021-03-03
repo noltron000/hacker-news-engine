@@ -6,11 +6,11 @@ import {
 
 /* ACTIONS */
 // check this out when the search bar is clicked.
-const activateSearch = (queries) => {
+const activateSearch = (search) => {
 	// create action object with a type label and its content.
 	const actionObject = {
 		'type': 'ACTIVATE_SEARCH',
-		'queries': queries,
+		'search': search,
 	}
 
 	// that's all we need.
@@ -20,10 +20,16 @@ const activateSearch = (queries) => {
 
 /* REDUCERS */
 // bindle all possible actions for the search.
-const search = (state = {'queries': [ ]}, action) => {
+const search = (
+	// 'state' param has a nice default object set up.
+	state = {'queries': [ ], 'results': { }},
+	// 'action' param won't get hit if it isn't used.
+	action
+) => {
+
 	// there's only one possible action type for queries.
 	if (action?.type === 'ACTIVATE_SEARCH') {
-		return action.queries
+		return action.search
 	}
 
 	// if there's no matching labels, do nothing extra.
