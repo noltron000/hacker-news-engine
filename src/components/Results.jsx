@@ -22,14 +22,13 @@ class Results extends Component {
 				Search Results
 			</h2>
 			<p>
-				{this.props.search.results.exhaustiveNbHits ? 'Exactly ' : 'More than '}
+				{'Found '}
+				{this.props.search.results.exhaustiveNbHits ? 'exactly ' : 'more than '}
 				{this.props.search.results.nbHits ?? NaN}
 				{' results in '}
 				{this.props.search.results.processingTimeMS / 1000}
 				{' seconds.'}
 			</p>
-
-			<pre><code>{JSON.stringify(this.props.search.results, null, '\t')}</code></pre>
 
 			{(this.props.search.results.hits ?? [ ]).map((hit) => (
 				<Result props={hit}/>

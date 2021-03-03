@@ -6,7 +6,7 @@ const Result = ({props}) => {
 	const signage = points >= 0 ? '+' : '–'
 	const title = props.title || props.story_title
 	const url = props.url || props.story_url
-	const numComments = props.numComments || 0
+	const numComments = props.num_comments || 0
 	// convert date to readable string.
 	const date = (new Date(props.created_at)).toLocaleDateString()
 
@@ -25,9 +25,9 @@ const Result = ({props}) => {
 					<u>{author}</u>
 					{' on '}
 					{date}
-				</span>
-				<span>
-					{numComments} comments
+					{' | '}
+					{numComments}
+					{' comments'}
 				</span>
 			</p>
 		</div>
