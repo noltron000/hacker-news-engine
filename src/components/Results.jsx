@@ -7,6 +7,24 @@ import Result from './Result'
 
 /* CREATE BASE CLASS */
 class Results extends Component {
+	turnPage = async (page) => {
+		const query = this.props.search.queries.slice(-1).pop()
+		const queries = this.props.search.queries
+
+		// fetch some stuff from the API using the proper page number.
+		// its going to be a promise, so we'll await them.
+		const promise = fetch(`https://hn.algolia.com/api/v1/search?query=${query}&page=${page}`)
+		const response = await promise
+		const results = await response.json()
+
+		// tell redux that we have new search data.
+		this.props.activateSearch({
+			// 'results' is fetched data for this query.
+			'results': results,
+			'queries': queries,
+		})
+	}
+
 	render () {return (
 		<section>
 			<h2>
@@ -16,7 +34,9 @@ class Results extends Component {
 				{'Found '}
 				{this.props.search.results.exhaustiveNbHits ? 'exactly ' : 'more than '}
 				{this.props.search.results.nbHits ?? NaN}
-				{' results in '}
+				{' result'}
+				{this.props.search.results.nbHits + 1 === 1 ? 's' : ''}
+				{' in '}
 				{this.props.search.results.processingTimeMS / 1000}
 				{' seconds.'}
 			</p>
@@ -26,55 +46,23 @@ class Results extends Component {
 			))}
 
 			<p>
-				Page {this.props.search.results.page} of {this.props.search.results.nbPages}
+				Page {this.props.search.results.page + 1} of {this.props.search.results.nbPages}
 				<br />
 				<input
 					type="button"
 					value="Previous Page"
-					disabled={this.props.search.results.page <= 0}
+					disabled={this.props.search.results.page + 1 <= 1}
 					onClick={async () => {
-						// determine variables
-						const page = this.props.search.results.page - 1
-						const query = this.props.search.queries.slice(-1).pop()
-						const queries = this.props.search.queries
-
-						// fetch some stuff from the API using the proper page number.
-						// its going to be a promise, so we'll await them.
-						const promise = fetch(`https://hn.algolia.com/api/v1/search?query=${query}&page=${page}`)
-						const response = await promise
-						const results = await response.json()
-
-						// tell redux that we have new search data.
-						this.props.activateSearch({
-							// 'results' is fetched data for this query.
-							'results': results,
-							'queries': queries,
-						})
+						await this.turnPage(this.props.search.results.page - 1)
 					}}
 				/>
 				{" | "}
 				<input
 					type="button"
 					value="Next Page"
-					disabled={this.props.search.results.page >= this.props.search.results.nbPages}
+					disabled={this.props.search.results.page + 1 >= this.props.search.results.nbPages}
 					onClick={async () => {
-						// determine variables
-						const page = this.props.search.results.page + 1
-						const query = this.props.search.queries.slice(-1).pop()
-						const queries = this.props.search.queries
-
-						// fetch some stuff from the API using the proper page number.
-						// its going to be a promise, so we'll await them.
-						const promise = fetch(`https://hn.algolia.com/api/v1/search?query=${query}&page=${page}`)
-						const response = await promise
-						const results = await response.json()
-
-						// tell redux that we have new search data.
-						this.props.activateSearch({
-							// 'results' is fetched data for this query.
-							'results': results,
-							'queries': queries,
-						})
+						await this.turnPage(this.props.search.results.page + 1)
 					}}
 				/>
 			</p>
