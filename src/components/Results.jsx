@@ -5,6 +5,7 @@ import {activateSearch} from '../redux.js'
 import {Component} from 'react'
 import Result from './Result'
 
+
 /* CREATE BASE CLASS */
 class Results extends Component {
 	turnPage = async (page) => {
@@ -31,20 +32,29 @@ class Results extends Component {
 				Search Results
 			</h2>
 			<p>
+				{/*
+					This paragraph string results in something like this:
+					"Found (exactly/more than) (####) result(s) in (####) seconds."
+				*/}
 				{'Found '}
 				{this.props.search.results.exhaustiveNbHits ? 'exactly ' : 'more than '}
 				{this.props.search.results.nbHits ?? NaN}
 				{' result'}
+				{/* make result(s) singular or plural */}
 				{this.props.search.results.nbHits + 1 === 1 ? 's' : ''}
 				{' in '}
 				{this.props.search.results.processingTimeMS / 1000}
 				{' seconds.'}
 			</p>
 
+
+			{/* For each search result, create a component. */}
 			{(this.props.search.results.hits ?? [ ]).map((hit) => (
 				<Result props={hit}/>
 			))}
 
+
+			{/* Create a navigator tool after the list of results. */}
 			<p>
 				Page {this.props.search.results.page + 1} of {this.props.search.results.nbPages}
 				<br />
@@ -69,6 +79,7 @@ class Results extends Component {
 		</section>
 	)}
 }
+
 
 /* EXTEND OBJECT INTO REDUX CONTAINER */
 const mapStateToProps = (state) => {
