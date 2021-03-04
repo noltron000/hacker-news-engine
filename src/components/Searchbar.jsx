@@ -2,7 +2,7 @@
 import {connect} from 'react-redux'
 import {activateSearch} from '../redux.js'
 import './Searchbar.css'
-// import components
+// import react components
 import {Component} from 'react'
 
 /* CREATE BASE CLASS */
