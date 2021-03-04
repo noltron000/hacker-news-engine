@@ -5,16 +5,23 @@ import {Component} from 'react'
 
 /* CREATE BASE CLASS */
 class History extends Component {
-	render () {return (
-		<section>
-			<h2>Search History</h2>
-			<ul>
-				{this.props.search.queries.map((query) => (
-					<li key={query}>{query}</li>
-				))}
-			</ul>
-		</section>
-	)}
+	render () {
+		if (this.props.search.queries.length === 0) {
+			return < ></>
+		}
+		// else {}
+		return (<>
+			<hr />
+			<section>
+				<h2>Search History</h2>
+				<ul>
+					{this.props.search.queries.map((query) => (
+						<li key={query}>{query}</li>
+					))}
+				</ul>
+			</section>
+		</>)
+	}
 }
 
 /* EXTEND OBJECT INTO REDUX CONTAINER */

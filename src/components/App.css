@@ -46,6 +46,7 @@ a {
 	text-align: right;
 	padding-right: 0.25rem;
 	margin-right: 0.25rem;
+	min-width: 4.25rem;
 	width: 4.25rem;
 	border-radius: 5px;
 	border: 2px dotted gray

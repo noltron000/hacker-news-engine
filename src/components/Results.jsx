@@ -26,58 +26,65 @@ class Results extends Component {
 		})
 	}
 
-	render () {return (
-		<section>
-			<h2>
-				Search Results
-			</h2>
-			<p>
-				{/*
-					This paragraph string results in something like this:
-					"Found (exactly/more than) (####) result(s) in (####) seconds."
-				*/}
-				{'Found '}
-				{this.props.search.results.exhaustiveNbHits ? 'exactly ' : 'more than '}
-				{this.props.search.results.nbHits ?? NaN}
-				{' result'}
-				{/* make result(s) singular or plural */}
-				{this.props.search.results.nbHits + 1 === 1 ? 's' : ''}
-				{' in '}
-				{this.props.search.results.processingTimeMS / 1000}
-				{' seconds.'}
-			</p>
+	render () {
+		if (this.props.search.queries.length === 0) {
+			return < ></>
+		}
+		// else {}
+		return (
+			<section>
+				<hr />
+				<h2>
+					Search Results
+				</h2>
+				<p>
+					{/*
+						This paragraph string results in something like this:
+						"Found (exactly/more than) (####) result(s) in (####) seconds."
+					*/}
+					{'Found '}
+					{this.props.search.results.exhaustiveNbHits ? 'exactly ' : 'more than '}
+					{this.props.search.results.nbHits ?? NaN}
+					{' result'}
+					{/* make result(s) singular or plural */}
+					{this.props.search.results.nbHits + 1 === 1 ? 's' : ''}
+					{' in '}
+					{this.props.search.results.processingTimeMS / 1000}
+					{' seconds.'}
+				</p>
 
 
-			{/* For each search result, create a component. */}
-			{(this.props.search.results.hits ?? [ ]).map((hit) => (
-				<Result props={hit}/>
-			))}
+				{/* For each search result, create a component. */}
+				{(this.props.search.results.hits ?? [ ]).map((hit) => (
+					<Result props={hit}/>
+				))}
 
 
-			{/* Create a navigator tool after the list of results. */}
-			<p>
-				Page {this.props.search.results.page + 1} of {this.props.search.results.nbPages}
-				<br />
-				<input
-					type="button"
-					value="Previous Page"
-					disabled={this.props.search.results.page + 1 <= 1}
-					onClick={async () => {
-						await this.turnPage(this.props.search.results.page - 1)
-					}}
-				/>
-				{" | "}
-				<input
-					type="button"
-					value="Next Page"
-					disabled={this.props.search.results.page + 1 >= this.props.search.results.nbPages}
-					onClick={async () => {
-						await this.turnPage(this.props.search.results.page + 1)
-					}}
-				/>
-			</p>
-		</section>
-	)}
+				{/* Create a navigator tool after the list of results. */}
+				<p>
+					Page {this.props.search.results.page + 1} of {this.props.search.results.nbPages}
+					<br />
+					<input
+						type="button"
+						value="Previous Page"
+						disabled={this.props.search.results.page + 1 <= 1}
+						onClick={async () => {
+							await this.turnPage(this.props.search.results.page - 1)
+						}}
+					/>
+					{" | "}
+					<input
+						type="button"
+						value="Next Page"
+						disabled={this.props.search.results.page + 1 >= this.props.search.results.nbPages}
+						onClick={async () => {
+							await this.turnPage(this.props.search.results.page + 1)
+						}}
+					/>
+				</p>
+			</section>
+		)
+	}
 }
 
 
