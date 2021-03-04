@@ -1,7 +1,25 @@
 # Hacker News Search Engine
 > Project initialized on March 1st, 2021.
 
+You can find this project live at https://noltron000.github.io/hacker-news-engine.
+
 ## Commentary
+### What I Learned
+Using redux again solidified the concepts that it uses.
+
+I've also learned that multi-line ES6 functions can be made to omit the return statement.
+To do so, replace the braces with parenthesis like so:
+
+```js
+const explicitReturn = () => {
+	return 'some return value'
+}
+
+const implicitReturn = () => (
+	'some return value'
+)
+```
+
 ### References
 These following sources helped me out:
 - https://blog.tylerbuchea.com/super-simple-react-redux-application-example/

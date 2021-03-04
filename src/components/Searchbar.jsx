@@ -1,7 +1,6 @@
 // import styles & other objects
 import {connect} from 'react-redux'
 import {activateSearch} from '../redux.js'
-import './Searchbar.css'
 // import react components
 import {Component} from 'react'
 

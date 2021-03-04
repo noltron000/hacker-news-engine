@@ -15,9 +15,7 @@ class App extends Component {
 			</main>
 			<div className = 'content'>
 				<Searchbar />
-				<hr />
 				<History />
-				<hr />
 				<Results />
 			</div>
 		</>
